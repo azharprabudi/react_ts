@@ -20,7 +20,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "cypress": "cypress",
-    "test:e2e": "cypress run"
+    "test:e2e": "react-app-rewired start && cypress run"
   },
   "eslintConfig": {
     "extends": "react-app"
