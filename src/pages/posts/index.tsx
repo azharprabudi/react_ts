@@ -34,16 +34,26 @@ class PostsPage extends PureComponent<Props, State> {
         }
     }
 
+    private removePost = (e:any) => {
+        const { id }  = e.target.dataset;
+        this.setState({
+            posts: this.state.posts.filter((post: Post) => post.id != id)
+        })
+    }
+
     render() {
         if (this.state.load) {
-            return <h1>load ...</h1>
+            return <h1 data-cy="load-posts">load ...</h1>
         }
 
         return (
-            <div>
+            <div data-cy="posts">
                 {
                     this.state.posts.map((item: Post) => (
-                        <div>{item.title}</div>
+                        <div key={item.id} data-cy="item-posts">
+                        {item.title}
+                        <button type="button" onClick={this.removePost} data-cy={`btn-post-${item.id}`} data-id={item.id} >x</button>
+                        </div>
                     ))
                 }
             </div>
